@@ -44,9 +44,7 @@ namespace ducky {
 			this->functionName = e.functionName;
 			this->fileName = e.fileName;
 			if (e.pInnerException) {
-				this->pInnerException = new Exception(e.pInnerException->what(),
-					e.pInnerException->getErrNo(), e.pInnerException->getLineNumber(),
-					e.pInnerException->getFunctionName(), e.pInnerException->getFileName());
+				this->pInnerException = new Exception(*e.pInnerException);
 			}
 			else {
 				this->pInnerException = NULL;
@@ -64,9 +62,7 @@ namespace ducky {
 			if (this->pInnerException) {
 				delete this->pInnerException;
 			}
-			this->pInnerException = new Exception(pInnerException->what(),
-				pInnerException->getErrNo(), pInnerException->getLineNumber(),
-				pInnerException->getFunctionName(), pInnerException->getFileName());
+			this->pInnerException = new Exception(*pInnerException);
 		}
 
 		const Exception* Exception::getInnerException() const {
@@ -84,9 +80,7 @@ namespace ducky {
 				this->pInnerException = NULL;
 			}
 			if (e.pInnerException) {
-				this->pInnerException = new Exception(e.pInnerException->what(),
-					e.pInnerException->getErrNo(), e.pInnerException->getLineNumber(),
-					e.pInnerException->getFunctionName(), e.pInnerException->getFileName());
+				this->pInnerException = new Exception(*e.pInnerException);
 			}
 
 			return *this;

@@ -29,29 +29,49 @@ public:
 	}
 };
 
-int main()
+int main()try
 {
 	T* t = new T;
 	try {
-		cout << "running class: " << t->getClassName() << endl;
-		t->setFreeOnTerminated(true);
-		t->start();
-		Thread::Sleep(100);
-		t->start();
+		try {
+			cout << "running class: " << t->getClassName() << endl;
+			t->setFreeOnTerminated(true);
+			t->start();
+			Thread::Sleep(100);
+			t->start();
+		}
+		catch (Exception& e) {
+			Exception e2 = MK_EXCEPTION(Exception, "thread maybe call start func twice.", 0);
+			e2.setInnerException(&e);
+			throw e2;
+		}
 	}
 	catch (Exception& e) {
-		const Exception* pe = &e;
-		do {
-			cout << pe->getFileName() << ", L" << pe->getLineNumber() << ": " << pe->what() << endl;
-			pe = pe->getInnerException();
-		} while (pe);
+		string info;
+		if (t && t->isRunning()) {
+			info = "thread is running, try to stop it.";
+			t->stop();
+		}
+		else {
+			info = "thread is not rnaning.";
+		}
+
+		Exception e2 = MK_EXCEPTION(Exception, info, 0);
+		e2.setInnerException(&e);
+		throw e2;
 	}
-	cin.get();
-	if (t->isRunning()) {
-		t->stop();
-	}
+	
 
 	cin.get();
 	return 0;
+}
+catch (Exception& e) {
+	const Exception* pe = &e;
+	do {
+		cout << pe->getFileName() << ", L" << pe->getLineNumber() << ": " << pe->what() << endl;
+		pe = pe->getInnerException();
+	} while (pe);
+	cin.get();
+	return -1;
 }
 
