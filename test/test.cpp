@@ -2,13 +2,16 @@
 //
 
 #include "stdafx.h"
-#include <libducky\Object.h>
-#include <libducky\thread\Thread.h>
+#include <libducky/Object.h>
+#include <libducky/thread/Thread.h>
 #include <libducky/exception/Exception.h>
+#include <libducky/factory/Factory.h>
+#include <libducky/singleton/Singleton.h>
 #include <iostream>
 
 using namespace ducky::thread;
 using namespace ducky::exception;
+using namespace ducky::factory;
 using namespace std;
 
 class T : public Thread
@@ -29,9 +32,13 @@ public:
 	}
 };
 
+typedef ducky::singleton::Singleton2<Factory> ObjFac;
+
 int main()try
 {
-	T* t = new T;
+	auto f = ObjFac::getInstance();
+	f->regiesterCreator<T>("T");
+	T* t = f->createObject<T>("T");
 	try {
 		try {
 			cout << "running class: " << t->getClassName() << endl;

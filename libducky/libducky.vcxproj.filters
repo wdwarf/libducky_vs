@@ -25,6 +25,12 @@
     <Filter Include="头文件\exception">
       <UniqueIdentifier>{35ee9167-ab90-42ee-be32-5ecf9eb612c7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\factory">
+      <UniqueIdentifier>{035e1501-e728-4ffc-aa6e-e0314da23414}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\factory">
+      <UniqueIdentifier>{0e196ffd-6aa9-4cdb-a899-c09567bf9a78}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -45,6 +51,60 @@
     <ClInclude Include="include\libducky\exception\Exception.h">
       <Filter>头文件\exception</Filter>
     </ClInclude>
+    <ClInclude Include="include\libducky\thread\CriticalSection.h">
+      <Filter>头文件\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\buffer\Buffer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\singleton\Singleton.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\encrypt\Base64.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\encrypt\CRC.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\encrypt\MD5.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\encrypt\Rijndael.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\db\ADOCatalog.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\db\ADOCommand.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\db\ADOConnection.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\db\ADOObject.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\db\Field.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\db\Fields.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\db\RecordSet.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\ui\AlignManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\ui\Dragable.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\ui\Edit.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky_config.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -58,6 +118,54 @@
     </ClCompile>
     <ClCompile Include="exception\Exception.cpp">
       <Filter>源文件\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="thread\CriticalSection.cpp">
+      <Filter>源文件\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="buffer\Buffer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="encrypt\Base64.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="encrypt\CRC.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="encrypt\MD5.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="encrypt\Rijndael.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="db\ADOCatalog.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="db\ADOCommand.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="db\ADOConnection.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="db\ADOObject.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="db\Field.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="db\Fields.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="db\RecordSet.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\AlignManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\Dragable.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\Edit.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -29,14 +29,16 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>Static</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>Static</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -75,7 +77,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_SCL_SECURE_NO_WARNINGS;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>./include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -104,7 +106,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_SCL_SECURE_NO_WARNINGS;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>./include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -136,13 +138,43 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\libducky\buffer\Buffer.h" />
+    <ClInclude Include="include\libducky\db\ADOCatalog.h" />
+    <ClInclude Include="include\libducky\db\ADOCommand.h" />
+    <ClInclude Include="include\libducky\db\ADOConnection.h" />
+    <ClInclude Include="include\libducky\db\ADOObject.h" />
+    <ClInclude Include="include\libducky\db\Field.h" />
+    <ClInclude Include="include\libducky\db\Fields.h" />
+    <ClInclude Include="include\libducky\db\RecordSet.h" />
+    <ClInclude Include="include\libducky\encrypt\Base64.h" />
+    <ClInclude Include="include\libducky\encrypt\CRC.h" />
+    <ClInclude Include="include\libducky\encrypt\MD5.h" />
+    <ClInclude Include="include\libducky\encrypt\Rijndael.h" />
     <ClInclude Include="include\libducky\exception\Exception.h" />
     <ClInclude Include="include\libducky\Object.h" />
+    <ClInclude Include="include\libducky\singleton\Singleton.h" />
+    <ClInclude Include="include\libducky\thread\CriticalSection.h" />
     <ClInclude Include="include\libducky\thread\Thread.h" />
+    <ClInclude Include="include\libducky\ui\AlignManager.h" />
+    <ClInclude Include="include\libducky\ui\Dragable.h" />
+    <ClInclude Include="include\libducky\ui\Edit.h" />
+    <ClInclude Include="include\libducky_config.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="buffer\Buffer.cpp" />
+    <ClCompile Include="db\ADOCatalog.cpp" />
+    <ClCompile Include="db\ADOCommand.cpp" />
+    <ClCompile Include="db\ADOConnection.cpp" />
+    <ClCompile Include="db\ADOObject.cpp" />
+    <ClCompile Include="db\Field.cpp" />
+    <ClCompile Include="db\Fields.cpp" />
+    <ClCompile Include="db\RecordSet.cpp" />
+    <ClCompile Include="encrypt\Base64.cpp" />
+    <ClCompile Include="encrypt\CRC.cpp" />
+    <ClCompile Include="encrypt\MD5.cpp" />
+    <ClCompile Include="encrypt\Rijndael.cpp" />
     <ClCompile Include="exception\Exception.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -151,7 +183,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="thread\CriticalSection.cpp" />
     <ClCompile Include="thread\Thread.cpp" />
+    <ClCompile Include="ui\AlignManager.cpp" />
+    <ClCompile Include="ui\Dragable.cpp" />
+    <ClCompile Include="ui\Edit.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
