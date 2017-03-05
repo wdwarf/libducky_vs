@@ -2,6 +2,7 @@
 #define LIBDUCKY_UI_AlignManager_H_
 
 #include "libducky_config.h"
+#include <libducky/Object.h>
 #include <afxwin.h>
 #include <list>
 
@@ -22,7 +23,7 @@ namespace ducky
 			AT_Client
 		};
 
-		class Margin
+		class Margin : virtual public Object
 		{
 		public:
 			Margin() { memset(this, 0, sizeof(Margin)); }
@@ -39,7 +40,7 @@ namespace ducky
 			int marginBottom;
 		};
 
-		class AlignProperty
+		class AlignProperty : virtual public Object
 		{
 		public:
 			AlignType align;
@@ -52,7 +53,7 @@ namespace ducky
 			friend class AlignManager;
 		};
 
-		class AlignManager
+		class AlignManager : virtual public Object
 		{
 		public:
 			AlignManager(void);

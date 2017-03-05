@@ -2,6 +2,8 @@
 #define LIBDUCKY_UI_Edit_H_
 
 #include "libducky_config.h"
+#include <libducky/Object.h>
+#include <afxwin.h>
 
 // Edit
 namespace ducky

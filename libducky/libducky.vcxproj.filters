@@ -31,6 +31,12 @@
     <Filter Include="源文件\factory">
       <UniqueIdentifier>{0e196ffd-6aa9-4cdb-a899-c09567bf9a78}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\db">
+      <UniqueIdentifier>{90a719b4-2c5f-494c-b283-74e1c4315a43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\db">
+      <UniqueIdentifier>{931cce23-3d22-46aa-b50f-6d624bcb5152}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -72,27 +78,6 @@
     <ClInclude Include="include\libducky\encrypt\Rijndael.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="include\libducky\db\ADOCatalog.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\libducky\db\ADOCommand.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\libducky\db\ADOConnection.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\libducky\db\ADOObject.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\libducky\db\Field.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\libducky\db\Fields.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\libducky\db\RecordSet.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="include\libducky\ui\AlignManager.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -104,6 +89,42 @@
     </ClInclude>
     <ClInclude Include="include\libducky_config.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\serial_port\SerialPort.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\registry\Registry.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\db\ConnectionPool.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\cpio\CompletionPort.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\factory\Factory.h">
+      <Filter>头文件\factory</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\db\ADOCatalog.h">
+      <Filter>头文件\db</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\db\ADOCommand.h">
+      <Filter>头文件\db</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\db\ADOConnection.h">
+      <Filter>头文件\db</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\db\ADOObject.h">
+      <Filter>头文件\db</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\db\RecordSet.h">
+      <Filter>头文件\db</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\db\Fields.h">
+      <Filter>头文件\db</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\db\Field.h">
+      <Filter>头文件\db</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -137,27 +158,6 @@
     <ClCompile Include="encrypt\Rijndael.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="db\ADOCatalog.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="db\ADOCommand.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="db\ADOConnection.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="db\ADOObject.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="db\Field.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="db\Fields.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="db\RecordSet.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="ui\AlignManager.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -166,6 +166,39 @@
     </ClCompile>
     <ClCompile Include="ui\Edit.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="db\ConnectionPool.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="serial_port\SerialPort.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="registry\Registry.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cpio\CompletionPort.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="db\ADOCatalog.cpp">
+      <Filter>源文件\db</Filter>
+    </ClCompile>
+    <ClCompile Include="db\ADOCommand.cpp">
+      <Filter>源文件\db</Filter>
+    </ClCompile>
+    <ClCompile Include="db\ADOConnection.cpp">
+      <Filter>源文件\db</Filter>
+    </ClCompile>
+    <ClCompile Include="db\ADOObject.cpp">
+      <Filter>源文件\db</Filter>
+    </ClCompile>
+    <ClCompile Include="db\Field.cpp">
+      <Filter>源文件\db</Filter>
+    </ClCompile>
+    <ClCompile Include="db\Fields.cpp">
+      <Filter>源文件\db</Filter>
+    </ClCompile>
+    <ClCompile Include="db\RecordSet.cpp">
+      <Filter>源文件\db</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,7 +1,8 @@
 #ifndef _LIBDUCKY_THREAD_H_
 #define _LIBDUCKY_THREAD_H_
 
-#include "libducky/Object.h"
+#include "libducky_config.h"
+#include <libducky/Object.h>
 #include "libducky/exception/Exception.h"
 #include <Windows.h>
 
@@ -15,7 +16,7 @@ namespace ducky
 			TS_RUNNING, TS_STOP_REQUIRING, TS_STOPPED
 		};
 
-		class Thread : public Object
+		class Thread : virtual public Object
 		{
 		public:
 			Thread();

@@ -1,12 +1,14 @@
 #ifndef LIBDUCKY_UI_Dragable_H_
 #define LIBDUCKY_UI_Dragable_H_
 
+#include "libducky_config.h"
+#include <libducky/Object.h>
 #include <Windows.h>
 
 namespace ducky
 {
 	namespace ui {
-		class Dragable
+		class Dragable : virtual public Object
 		{
 		public:
 			Dragable(HWND hwnd, HWND hwndTarget = 0);

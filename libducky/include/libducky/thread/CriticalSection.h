@@ -1,6 +1,8 @@
 #ifndef DUCKY_THREAD_CriticalSection_H_
 #define DUCKY_THREAD_CriticalSection_H_
 
+#include "libducky_config.h"
+#include <libducky/Object.h>
 #include <Windows.h>
 #include <string>
 
@@ -9,7 +11,7 @@ using std::string;
 namespace ducky
 {
 	namespace thread {
-		class CriticalSection
+		class CriticalSection : virtual public Object
 		{
 		public:
 			CriticalSection();

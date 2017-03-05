@@ -139,10 +139,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\libducky\buffer\Buffer.h" />
+    <ClInclude Include="include\libducky\cpio\CompletionPort.h" />
     <ClInclude Include="include\libducky\db\ADOCatalog.h" />
     <ClInclude Include="include\libducky\db\ADOCommand.h" />
     <ClInclude Include="include\libducky\db\ADOConnection.h" />
     <ClInclude Include="include\libducky\db\ADOObject.h" />
+    <ClInclude Include="include\libducky\db\ConnectionPool.h" />
     <ClInclude Include="include\libducky\db\Field.h" />
     <ClInclude Include="include\libducky\db\Fields.h" />
     <ClInclude Include="include\libducky\db\RecordSet.h" />
@@ -151,7 +153,10 @@
     <ClInclude Include="include\libducky\encrypt\MD5.h" />
     <ClInclude Include="include\libducky\encrypt\Rijndael.h" />
     <ClInclude Include="include\libducky\exception\Exception.h" />
+    <ClInclude Include="include\libducky\factory\Factory.h" />
     <ClInclude Include="include\libducky\Object.h" />
+    <ClInclude Include="include\libducky\registry\Registry.h" />
+    <ClInclude Include="include\libducky\serial_port\SerialPort.h" />
     <ClInclude Include="include\libducky\singleton\Singleton.h" />
     <ClInclude Include="include\libducky\thread\CriticalSection.h" />
     <ClInclude Include="include\libducky\thread\Thread.h" />
@@ -164,6 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="buffer\Buffer.cpp" />
+    <ClCompile Include="cpio\CompletionPort.cpp" />
     <ClCompile Include="db\ADOCatalog.cpp" />
     <ClCompile Include="db\ADOCommand.cpp" />
     <ClCompile Include="db\ADOConnection.cpp" />
@@ -171,12 +177,15 @@
     <ClCompile Include="db\Field.cpp" />
     <ClCompile Include="db\Fields.cpp" />
     <ClCompile Include="db\RecordSet.cpp" />
+    <ClCompile Include="db\ConnectionPool.cpp" />
     <ClCompile Include="encrypt\Base64.cpp" />
     <ClCompile Include="encrypt\CRC.cpp" />
     <ClCompile Include="encrypt\MD5.cpp" />
     <ClCompile Include="encrypt\Rijndael.cpp" />
     <ClCompile Include="exception\Exception.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="registry\Registry.cpp" />
+    <ClCompile Include="serial_port\SerialPort.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
