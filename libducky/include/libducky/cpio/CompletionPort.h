@@ -8,7 +8,7 @@ namespace ducky
 	namespace cpio
 	{
 
-		class CompletionPort
+		class CompletionPort : virtual public Object
 		{
 		public:
 			CompletionPort(DWORD concurrentThreads = 0);

@@ -7,11 +7,14 @@
 #include <libducky/exception/Exception.h>
 #include <libducky/factory/Factory.h>
 #include <libducky/singleton/Singleton.h>
+#include <libducky/serial_port/SerialPort.h>
 #include <iostream>
+#include <sstream>
 
 using namespace ducky::thread;
 using namespace ducky::exception;
 using namespace ducky::factory;
+using namespace ducky::serial_port;
 using namespace std;
 
 class T : public Thread
@@ -34,8 +37,40 @@ public:
 
 typedef ducky::singleton::Singleton2<Factory> ObjFac;
 
+class MyComm : public SerialPort {
+	virtual void onRead(const char* buf, int len) {
+		string str(buf, len);
+		cout << str << endl;
+		this->write("thanks", 6);
+	}
+	virtual void onWrite(const char* buf, int len) {
+		cout << "send: " << string(buf, len) << endl;
+	}
+	virtual void onReadTimeout() {}
+	virtual void onOpen() {
+		cout << this->getPort() << " opened" << endl;
+	}
+	virtual void onClose() {
+		cout << this->getPort() << " closed" << endl;
+	}
+};
+
 int main()try
 {
+	auto comPorts = SerialPort::ListComPorts();
+	for (const string& port : comPorts) {
+		cout << port << endl;
+	}
+
+	MyComm com;
+	com.setPort("com8");
+	com.setAsync();
+	com.open();
+	cin.get();
+	com.close();
+	cin.get();
+	return 0;
+
 	auto f = ObjFac::getInstance();
 	f->regiesterCreator<T>("T");
 	T* t = f->createObject<T>("T");

@@ -25,15 +25,15 @@ namespace ducky
 				memset(this, 0, sizeof(OVERLAPPED));
 				this->operateType = SerialPort::OT_READ;
 				memset(&this->buf, 0, sizeof(WSABUF));
-				this->SetBufferSize(DEFAULT_BUF_SIZE);
+				this->setBufferSize(DEFAULT_BUF_SIZE);
 			}
 
 			~SerialContext()
 			{
-				this->SetBufferSize(0);
+				this->setBufferSize(0);
 			}
 
-			void SetBufferSize(unsigned long bufSize)
+			void setBufferSize(unsigned long bufSize)
 			{
 				if (buf.buf)
 				{
@@ -77,8 +77,8 @@ namespace ducky
 				{
 					return 0;
 				}
-				this->pSerialPort->OnOpen();
-				this->pSerialPort->Read(NULL, 0);
+				this->pSerialPort->onOpen();
+				this->pSerialPort->read(NULL, 0);
 
 				while (!this->canStop())
 				{
@@ -96,18 +96,18 @@ namespace ducky
 						{
 							if (numberOfBytesTransferred > 0)
 							{
-								this->pSerialPort->OnRead(context->buf.buf, numberOfBytesTransferred);
+								this->pSerialPort->onRead(context->buf.buf, numberOfBytesTransferred);
 							}
 							else
 							{
-								this->pSerialPort->OnReadTimeout();
+								this->pSerialPort->onReadTimeout();
 							}
-							this->pSerialPort->Read(NULL, 0);
+							this->pSerialPort->read(NULL, 0);
 						}
 						break;
 						case SerialPort::OT_WRITE:
 						{
-							this->pSerialPort->OnWrite(context->buf.buf, numberOfBytesTransferred);
+							this->pSerialPort->onWrite(context->buf.buf, numberOfBytesTransferred);
 						}
 						break;
 						}
@@ -123,7 +123,7 @@ namespace ducky
 					}
 				}
 
-				this->pSerialPort->OnClose();
+				this->pSerialPort->onClose();
 
 				return 0;
 			}
@@ -157,18 +157,18 @@ namespace ducky
 			this->commTimeouts.WriteTotalTimeoutConstant = 2000;
 			this->commTimeouts.WriteTotalTimeoutMultiplier = 0;
 
-			this->SetPort(_T("COM1"));
-			this->SetBaudRate(9600);
-			this->SetParity(None);
-			this->SetByteSize(8);
-			this->SetStopBits(0);
+			this->setPort(_T("COM1"));
+			this->setBaudRate(9600);
+			this->setParity(None);
+			this->setByteSize(8);
+			this->setStopBits(0);
 		}
 
 		//---------------------------------------------------------------------------
 
 		SerialPort::~SerialPort()
 		{
-			this->Close();
+			this->close();
 		}
 
 		//---------------------------------------------------------------------------
@@ -211,9 +211,9 @@ namespace ducky
 
 		//---------------------------------------------------------------------------
 
-		void SerialPort::SetAsync(bool isAsync)
+		void SerialPort::setAsync(bool isAsync)
 		{
-			if (!this->IsOpen())
+			if (!this->isOpen())
 			{
 				this->isAsync = isAsync;
 			}
@@ -221,9 +221,9 @@ namespace ducky
 
 		//---------------------------------------------------------------------------
 
-		bool SerialPort::Open()
+		bool SerialPort::open()
 		{
-			this->Close();
+			this->close();
 
 			_W(string) strPort = _T("\\\\.\\") + this->port;
 
@@ -243,7 +243,7 @@ namespace ducky
 					!SetCommTimeouts(this->hComPort, &this->commTimeouts) ||
 					!SetCommState(this->hComPort, &this->dcb))
 				{
-					this->Close();
+					this->close();
 					return false;
 				}
 
@@ -271,7 +271,7 @@ namespace ducky
 
 		//---------------------------------------------------------------------------
 
-		bool SerialPort::Close()
+		bool SerialPort::close()
 		{
 			if (this->isAsync)
 			{
@@ -297,16 +297,16 @@ namespace ducky
 
 		//---------------------------------------------------------------------------
 
-		bool SerialPort::IsOpen()
+		bool SerialPort::isOpen()
 		{
 			return (INVALID_HANDLE_VALUE != this->hComPort);
 		}
 
 		//---------------------------------------------------------------------------
 
-		int SerialPort::Read(char* buf, int len)
+		int SerialPort::read(char* buf, int len)
 		{
-			if (this->IsOpen())
+			if (this->isOpen())
 			{
 				DWORD readBytes = 0;
 
@@ -341,9 +341,9 @@ namespace ducky
 
 		//---------------------------------------------------------------------------
 
-		int SerialPort::Write(const char* buf, int len)
+		int SerialPort::write(const char* buf, int len)
 		{
-			if (this->IsOpen())
+			if (this->isOpen())
 			{
 				DWORD writeBytes = 0;
 
@@ -351,7 +351,7 @@ namespace ducky
 				{
 					SerialContext* context = new SerialContext();
 					context->operateType = OT_WRITE;
-					context->SetBufferSize(len);
+					context->setBufferSize(len);
 					memcpy(context->buf.buf, buf, len);
 					if (!WriteFile(this->hComPort, context->buf.buf, context->buf.len,
 						&writeBytes, context))
@@ -380,36 +380,36 @@ namespace ducky
 
 		//---------------------------------------------------------------------------
 
-		void SerialPort::SetPort(const _W(string)& port)
+		void SerialPort::setPort(const _W(string)& port)
 		{
 			this->port = port;
-			if (this->IsOpen())
+			if (this->isOpen())
 			{
-				this->Close();
-				this->Open();
+				this->close();
+				this->open();
 			}
 		}
 
 		//---------------------------------------------------------------------------
 
-		const _W(string) SerialPort::GetPort() const
+		const _W(string) SerialPort::getPort() const
 		{
 			return this->port;
 		}
 
 		//---------------------------------------------------------------------------
 
-		unsigned char SerialPort::GetParity() const
+		unsigned char SerialPort::getParity() const
 		{
 			return this->dcb.Parity;
 		}
 
 		//---------------------------------------------------------------------------
 
-		bool SerialPort::SetParity(unsigned char  parity)
+		bool SerialPort::setParity(unsigned char  parity)
 		{
 			this->dcb.Parity = parity;
-			if (this->IsOpen())
+			if (this->isOpen())
 			{
 				return SetCommState(this->hComPort, &this->dcb);
 			}
@@ -418,17 +418,17 @@ namespace ducky
 
 		//---------------------------------------------------------------------------
 
-		unsigned long SerialPort::GetBaudRate() const
+		unsigned long SerialPort::getBaudRate() const
 		{
 			return this->dcb.BaudRate;
 		}
 
 		//---------------------------------------------------------------------------
 
-		bool SerialPort::SetBaudRate(unsigned long  baudRate)
+		bool SerialPort::setBaudRate(unsigned long  baudRate)
 		{
 			this->dcb.BaudRate = baudRate;
-			if (this->IsOpen())
+			if (this->isOpen())
 			{
 				if (SetCommState(this->hComPort, &this->dcb))
 				{
@@ -440,17 +440,17 @@ namespace ducky
 
 		//---------------------------------------------------------------------------
 
-		unsigned char SerialPort::GetStopBits() const
+		unsigned char SerialPort::getStopBits() const
 		{
 			return this->dcb.StopBits;
 		}
 
 		//---------------------------------------------------------------------------
 
-		bool SerialPort::SetStopBits(unsigned char stopBits)
+		bool SerialPort::setStopBits(unsigned char stopBits)
 		{
 			this->dcb.StopBits = this->dcb.StopBits;
-			if (this->IsOpen())
+			if (this->isOpen())
 			{
 				return SetCommState(this->hComPort, &this->dcb);
 			}
@@ -459,17 +459,17 @@ namespace ducky
 
 		//---------------------------------------------------------------------------
 
-		unsigned char SerialPort::GetByteSize() const
+		unsigned char SerialPort::getByteSize() const
 		{
 			return this->dcb.ByteSize;
 		}
 
 		//---------------------------------------------------------------------------
 
-		bool SerialPort::SetByteSize(unsigned char byteSize)
+		bool SerialPort::setByteSize(unsigned char byteSize)
 		{
 			this->dcb.ByteSize = byteSize;
-			if (this->IsOpen())
+			if (this->isOpen())
 			{
 				return SetCommState(this->hComPort, &this->dcb);
 			}
@@ -478,18 +478,18 @@ namespace ducky
 
 		//---------------------------------------------------------------------------
 
-		DWORD SerialPort::GetReadTimeout() const
+		DWORD SerialPort::getReadTimeout() const
 		{
 			return this->readTimeout;
 		}
 
 		//---------------------------------------------------------------------------
 
-		bool SerialPort::SetReadTimeout(DWORD timeout)
+		bool SerialPort::setReadTimeout(DWORD timeout)
 		{
 			this->readTimeout = timeout;
 			this->commTimeouts.ReadTotalTimeoutConstant = this->readTimeout;
-			if (this->IsOpen())
+			if (this->isOpen())
 			{
 				return SetCommTimeouts(this->hComPort, &this->commTimeouts);
 			}
@@ -498,17 +498,17 @@ namespace ducky
 
 		//---------------------------------------------------------------------------
 
-		DWORD SerialPort::GetReadInterval() const
+		DWORD SerialPort::getReadInterval() const
 		{
 			return this->commTimeouts.ReadIntervalTimeout;
 		}
 
 		//---------------------------------------------------------------------------
 
-		bool SerialPort::SetReadInterval(DWORD interval)
+		bool SerialPort::setReadInterval(DWORD interval)
 		{
 			this->commTimeouts.ReadIntervalTimeout = interval;
-			if (this->IsOpen())
+			if (this->isOpen())
 			{
 				return SetCommTimeouts(this->hComPort, &this->commTimeouts);
 			}

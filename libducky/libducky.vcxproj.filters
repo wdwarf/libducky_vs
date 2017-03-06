@@ -37,6 +37,45 @@
     <Filter Include="源文件\db">
       <UniqueIdentifier>{931cce23-3d22-46aa-b50f-6d624bcb5152}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\encrypt">
+      <UniqueIdentifier>{90928e79-9b44-4483-a153-358676617589}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\encrypt">
+      <UniqueIdentifier>{ac7cb520-7b92-4c8d-aca3-540febb8d3a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ui">
+      <UniqueIdentifier>{ccd80ac3-941a-4d06-add4-0608337a219a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ui">
+      <UniqueIdentifier>{1ef0d43c-4405-455d-8752-2bf923665507}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\buffer">
+      <UniqueIdentifier>{91947655-6efc-4be1-a402-56e3ff67bb0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\buffer">
+      <UniqueIdentifier>{82ea04b4-a6f8-4651-999b-ee414868b807}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\cpio">
+      <UniqueIdentifier>{b04e5c06-b637-465b-ad01-74e4263e07ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\cpio">
+      <UniqueIdentifier>{2d450ad5-ad66-4ea2-b1c6-dea1a784f472}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\registry">
+      <UniqueIdentifier>{303b4f7e-63ab-4656-b7bd-371ff3fc5758}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\registry">
+      <UniqueIdentifier>{d64cb496-d2c1-473a-9dcc-451ba0668196}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\serial_port">
+      <UniqueIdentifier>{d9ee2707-78db-4544-8e85-91d6d7360ec2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\serial_port">
+      <UniqueIdentifier>{061564f5-1105-4b9c-a540-5fa83ae0f72b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\singleton">
+      <UniqueIdentifier>{57c5e158-69a7-46c4-ae46-418b2ae39adf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -60,46 +99,7 @@
     <ClInclude Include="include\libducky\thread\CriticalSection.h">
       <Filter>头文件\thread</Filter>
     </ClInclude>
-    <ClInclude Include="include\libducky\buffer\Buffer.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\libducky\singleton\Singleton.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\libducky\encrypt\Base64.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\libducky\encrypt\CRC.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\libducky\encrypt\MD5.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\libducky\encrypt\Rijndael.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\libducky\ui\AlignManager.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\libducky\ui\Dragable.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\libducky\ui\Edit.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="include\libducky_config.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\libducky\serial_port\SerialPort.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\libducky\registry\Registry.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\libducky\db\ConnectionPool.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="include\libducky\cpio\CompletionPort.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="include\libducky\factory\Factory.h">
@@ -126,6 +126,45 @@
     <ClInclude Include="include\libducky\db\Field.h">
       <Filter>头文件\db</Filter>
     </ClInclude>
+    <ClInclude Include="include\libducky\encrypt\Base64.h">
+      <Filter>头文件\encrypt</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\encrypt\CRC.h">
+      <Filter>头文件\encrypt</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\encrypt\Rijndael.h">
+      <Filter>头文件\encrypt</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\encrypt\MD5.h">
+      <Filter>头文件\encrypt</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\ui\AlignManager.h">
+      <Filter>头文件\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\ui\Dragable.h">
+      <Filter>头文件\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\ui\Edit.h">
+      <Filter>头文件\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\db\ConnectionPool.h">
+      <Filter>头文件\db</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\buffer\Buffer.h">
+      <Filter>头文件\buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\cpio\CompletionPort.h">
+      <Filter>头文件\cpio</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\registry\Registry.h">
+      <Filter>头文件\registry</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\serial_port\SerialPort.h">
+      <Filter>头文件\serial_port</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\singleton\Singleton.h">
+      <Filter>头文件\singleton</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -142,42 +181,6 @@
     </ClCompile>
     <ClCompile Include="thread\CriticalSection.cpp">
       <Filter>源文件\thread</Filter>
-    </ClCompile>
-    <ClCompile Include="buffer\Buffer.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="encrypt\Base64.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="encrypt\CRC.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="encrypt\MD5.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="encrypt\Rijndael.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="ui\AlignManager.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="ui\Dragable.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="ui\Edit.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="db\ConnectionPool.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="serial_port\SerialPort.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="registry\Registry.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="cpio\CompletionPort.cpp">
-      <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="db\ADOCatalog.cpp">
       <Filter>源文件\db</Filter>
@@ -199,6 +202,42 @@
     </ClCompile>
     <ClCompile Include="db\RecordSet.cpp">
       <Filter>源文件\db</Filter>
+    </ClCompile>
+    <ClCompile Include="encrypt\CRC.cpp">
+      <Filter>源文件\encrypt</Filter>
+    </ClCompile>
+    <ClCompile Include="encrypt\MD5.cpp">
+      <Filter>源文件\encrypt</Filter>
+    </ClCompile>
+    <ClCompile Include="encrypt\Rijndael.cpp">
+      <Filter>源文件\encrypt</Filter>
+    </ClCompile>
+    <ClCompile Include="encrypt\Base64.cpp">
+      <Filter>源文件\encrypt</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\Dragable.cpp">
+      <Filter>源文件\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\Edit.cpp">
+      <Filter>源文件\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\AlignManager.cpp">
+      <Filter>源文件\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="db\ConnectionPool.cpp">
+      <Filter>源文件\db</Filter>
+    </ClCompile>
+    <ClCompile Include="buffer\Buffer.cpp">
+      <Filter>源文件\buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="cpio\CompletionPort.cpp">
+      <Filter>源文件\cpio</Filter>
+    </ClCompile>
+    <ClCompile Include="registry\Registry.cpp">
+      <Filter>源文件\registry</Filter>
+    </ClCompile>
+    <ClCompile Include="serial_port\SerialPort.cpp">
+      <Filter>源文件\serial_port</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

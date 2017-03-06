@@ -16,7 +16,7 @@ namespace ducky
 	namespace serial_port 
 	{
 
-		class SerialPort
+		class SerialPort : virtual public Object
 		{
 		public:
 			SerialPort(bool isAsync = false);
@@ -29,36 +29,36 @@ namespace ducky
 			static list<_W(string)> ListComPorts();
 
 			//开启异步串口，串口关闭时才可设置
-			void SetAsync(bool isAsync = true);
+			void setAsync(bool isAsync = true);
 
-			virtual bool Open();
-			virtual bool Close();
-			virtual bool IsOpen();
-			virtual int Read(char* buf, int len);
-			virtual int Write(const char* buf, int len);
-			virtual void SetPort(const _W(string)& port);
-			virtual const _W(string) GetPort() const;
-			virtual bool SetParity(unsigned char  parity);
-			virtual unsigned char GetParity() const;
-			virtual bool SetBaudRate(unsigned long  baudRate);
-			virtual unsigned long GetBaudRate() const;
-			virtual bool SetStopBits(unsigned char stopBits);
-			virtual unsigned char GetStopBits() const;
-			virtual bool SetByteSize(unsigned char byteSize);
-			virtual unsigned char GetByteSize() const;
-			virtual bool SetReadTimeout(DWORD timeout);
-			virtual DWORD GetReadTimeout() const;
-			virtual bool SetReadInterval(DWORD interval);
-			virtual DWORD GetReadInterval() const;
+			virtual bool open();
+			virtual bool close();
+			virtual bool isOpen();
+			virtual int read(char* buf, int len);
+			virtual int write(const char* buf, int len);
+			virtual void setPort(const _W(string)& port);
+			virtual const _W(string) getPort() const;
+			virtual bool setParity(unsigned char  parity);
+			virtual unsigned char getParity() const;
+			virtual bool setBaudRate(unsigned long  baudRate);
+			virtual unsigned long getBaudRate() const;
+			virtual bool setStopBits(unsigned char stopBits);
+			virtual unsigned char getStopBits() const;
+			virtual bool setByteSize(unsigned char byteSize);
+			virtual unsigned char getByteSize() const;
+			virtual bool setReadTimeout(DWORD timeout);
+			virtual DWORD getReadTimeout() const;
+			virtual bool setReadInterval(DWORD interval);
+			virtual DWORD getReadInterval() const;
 
 			operator HANDLE() const;
 
 			//异步事件回调函数,当SetAsync(true)时生效
-			virtual void OnRead(const char* buf, int len) {}
-			virtual void OnWrite(const char* buf, int len) {}
-			virtual void OnReadTimeout() {}
-			virtual void OnOpen() {}
-			virtual void OnClose() {}
+			virtual void onRead(const char* buf, int len) {}
+			virtual void onWrite(const char* buf, int len) {}
+			virtual void onReadTimeout() {}
+			virtual void onOpen() {}
+			virtual void onClose() {}
 
 		protected:
 			boost::scoped_ptr<ducky::thread::Thread> workThread;

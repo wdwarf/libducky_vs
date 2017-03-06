@@ -25,7 +25,7 @@ namespace ducky
 	{
 
 
-		class RegistryValue
+		class RegistryValue : virtual public Object
 		{
 		public:
 			RegistryValue(_W(string) name, const TCHAR* data,
@@ -54,7 +54,7 @@ namespace ducky
 				DWORD dataLen, DWORD dataType);
 		};
 
-		class Registry
+		class Registry : virtual public Object
 		{
 		public:
 			Registry(HKEY key = 0);
