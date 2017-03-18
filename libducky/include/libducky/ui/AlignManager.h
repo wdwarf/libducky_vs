@@ -26,13 +26,9 @@ namespace ducky
 		class Margin : virtual public Object
 		{
 		public:
-			Margin() { memset(this, 0, sizeof(Margin)); }
-			Margin(int margin)
-				: marginLeft(margin), marginTop(margin),
-				marginRight(margin), marginBottom(margin) {}
-			Margin(int left, int top, int right, int bottom)
-				: marginLeft(left), marginTop(top),
-				marginRight(right), marginBottom(bottom) {}
+			Margin();
+			Margin(int margin);
+			Margin(int left, int top, int right, int bottom);
 
 			int marginLeft;
 			int marginTop;

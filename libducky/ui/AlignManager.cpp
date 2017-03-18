@@ -4,6 +4,24 @@
 namespace ducky {
 	namespace ui {
 
+		Margin::Margin() : marginLeft(0), marginTop(0)
+			, marginRight(0), marginBottom(0) 
+		{
+		}
+		
+		Margin::Margin(int margin)
+			: marginLeft(margin), marginTop(margin)
+			, marginRight(margin), marginBottom(margin)
+		{
+		}
+
+		Margin::Margin(int left, int top, int right, int bottom)
+			: marginLeft(left), marginTop(top),
+			marginRight(right), marginBottom(bottom)
+		{
+		}
+
+
 		AlignManager::AlignManager(void)
 		{
 
@@ -23,7 +41,7 @@ namespace ducky {
 				ap.wnd = wnd;
 				ap.align = align;
 				ap.margin = margin;
-				GetWindowRect(wnd, &ap.originalWindowRect);
+				::GetWindowRect(wnd, &ap.originalWindowRect);
 				this->wndList.push_back(ap);
 			}
 		}
