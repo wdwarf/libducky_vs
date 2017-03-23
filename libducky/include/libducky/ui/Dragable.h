@@ -7,16 +7,26 @@
 
 namespace ducky
 {
-	namespace ui {
+	namespace ui
+	{
+		enum DragType
+		{
+			DRAG_FREE,
+			DRAG_INSIDE,
+			DRAG_EDGE
+		};
+
 		class Dragable : virtual public Object
 		{
 		public:
-			Dragable(HWND hwnd, HWND hwndTarget = 0);
+			Dragable(HWND hwnd, HWND hwndTarget = 0, 
+				DragType type = DRAG_FREE);
 			virtual ~Dragable(void);
 
 		protected:
 			HWND hwnd;
 			HWND hwndTarget;
+			DragType dragType;
 			bool drag;
 			WNDPROC oldWndProc;
 			POINT startPoint;

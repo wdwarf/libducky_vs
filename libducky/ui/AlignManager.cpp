@@ -118,7 +118,7 @@ namespace ducky {
 				ap.margin.marginLeft + wndRect.Width(),
 				wndRect.bottom);
 
-			::MoveWindow(ap.wnd, rect.left, rect.top, rect.Width(), rect.Height(), TRUE);
+			::MoveWindow(ap.wnd, rect.left, rect.top, rect.Width(), rect.Height(), FALSE);
 		}
 
 		void AlignManager::HandleAlignRight(AlignProperty& ap)
@@ -141,7 +141,7 @@ namespace ducky {
 				clientRect.right - ap.margin.marginRight,
 				wndRect.bottom);
 
-			::MoveWindow(ap.wnd, rect.left, rect.top, rect.Width(), rect.Height(), TRUE);
+			::MoveWindow(ap.wnd, rect.left, rect.top, rect.Width(), rect.Height(), FALSE);
 		}
 
 		void AlignManager::HandleAlignTop(AlignProperty& ap)
@@ -164,7 +164,7 @@ namespace ducky {
 				wndRect.left + wndRect.Width(),
 				ap.margin.marginTop + wndRect.Height());
 
-			::MoveWindow(ap.wnd, rect.left, rect.top, rect.Width(), rect.Height(), TRUE);
+			::MoveWindow(ap.wnd, rect.left, rect.top, rect.Width(), rect.Height(), FALSE);
 		}
 
 		void AlignManager::HandleAlignBottom(AlignProperty& ap)
@@ -188,7 +188,7 @@ namespace ducky {
 				wndRect.left + wndRect.Width(),
 				top + wndRect.Height());
 
-			::MoveWindow(ap.wnd, rect.left, rect.top, rect.Width(), rect.Height(), TRUE);
+			::MoveWindow(ap.wnd, rect.left, rect.top, rect.Width(), rect.Height(), FALSE);
 		}
 
 		void AlignManager::HandleAlignHCenter(AlignProperty& ap)
@@ -212,7 +212,7 @@ namespace ducky {
 				left + wndRect.Width(),
 				wndRect.bottom);
 
-			::MoveWindow(ap.wnd, rect.left, rect.top, rect.Width(), rect.Height(), TRUE);
+			::MoveWindow(ap.wnd, rect.left, rect.top, rect.Width(), rect.Height(), FALSE);
 		}
 
 		void AlignManager::HandleAlignVMiddle(AlignProperty& ap)
@@ -235,7 +235,7 @@ namespace ducky {
 				wndRect.Width(),
 				wndRect.Height());
 
-			::MoveWindow(ap.wnd, rect.left, rect.top, rect.Width(), rect.Height(), TRUE);
+			::MoveWindow(ap.wnd, rect.left, rect.top, rect.Width(), rect.Height(), FALSE);
 		}
 
 		void AlignManager::HandleAlignWidthFill(AlignProperty& ap)
@@ -258,7 +258,7 @@ namespace ducky {
 				clientRect.right - ap.margin.marginRight,
 				wndRect.bottom);
 
-			::MoveWindow(ap.wnd, rect.left, rect.top, rect.Width(), rect.Height(), TRUE);
+			::MoveWindow(ap.wnd, rect.left, rect.top, rect.Width(), rect.Height(), FALSE);
 		}
 
 		void AlignManager::HandleAlignHeightFill(AlignProperty& ap)
@@ -281,7 +281,7 @@ namespace ducky {
 				wndRect.right,
 				clientRect.bottom - ap.margin.marginBottom);
 
-			::MoveWindow(ap.wnd, rect.left, rect.top, rect.Width(), rect.Height(), TRUE);
+			::MoveWindow(ap.wnd, rect.left, rect.top, rect.Width(), rect.Height(), FALSE);
 		}
 
 		void AlignManager::HandleAlignClient(AlignProperty& ap)
@@ -296,7 +296,7 @@ namespace ducky {
 				clientRect.right - ap.margin.marginRight,
 				clientRect.bottom - ap.margin.marginBottom);
 
-			::MoveWindow(ap.wnd, rect.left, rect.top, rect.Width(), rect.Height(), TRUE);
+			::MoveWindow(ap.wnd, rect.left, rect.top, rect.Width(), rect.Height(), FALSE);
 		}
 
 	}

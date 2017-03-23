@@ -6,7 +6,7 @@ namespace ducky {
 
 		static PTSTR _Dragable_Param_Name = _T("DragableParam");
 
-		Dragable::Dragable(HWND hwnd, HWND hwndTarget) : drag(false), oldWndProc(0)
+		Dragable::Dragable(HWND hwnd, HWND hwndTarget, DragType type) : dragType(type), drag(false), oldWndProc(0)
 		{
 			ASSERT(hwnd);
 			this->hwnd = hwnd;
@@ -29,8 +29,8 @@ namespace ducky {
 			_In_ WPARAM wParam,
 			_In_ LPARAM lParam)
 		{
-			Dragable* dObj = (Dragable*)::GetProp(hWnd, _Dragable_Param_Name);
-			if (dObj)
+			Dragable* pThis = (Dragable*)::GetProp(hWnd, _Dragable_Param_Name);
+			if (pThis)
 			{
 				switch (Msg)
 				{
@@ -39,11 +39,11 @@ namespace ducky {
 					POINT p;
 					RECT rect;
 					::GetCursorPos(&p);
-					::GetWindowRect(dObj->hwndTarget, &rect);
+					::GetWindowRect(pThis->hwndTarget, &rect);
 					HWND hWndParent = 0;
-					if (::GetWindowLong(dObj->hwndTarget, GWL_STYLE) & WS_CHILD)
+					if (::GetWindowLong(pThis->hwndTarget, GWL_STYLE) & WS_CHILD)
 					{
-						hWndParent = ::GetParent(dObj->hwndTarget);
+						hWndParent = ::GetParent(pThis->hwndTarget);
 					}
 					POINT lt, rb;
 					lt.x = rect.left;
@@ -61,40 +61,42 @@ namespace ducky {
 					rect.right = rb.x;
 					rect.bottom = rb.y;
 
-					dObj->startPoint.x = p.x - rect.left;
-					dObj->startPoint.y = p.y - rect.top;
+					pThis->startPoint.x = p.x - rect.left;
+					pThis->startPoint.y = p.y - rect.top;
 
-					::SetWindowPos(dObj->hwndTarget, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
+					::SetWindowPos(pThis->hwndTarget, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
 
-					dObj->drag = true;
-					::SetCapture(dObj->hwnd);
+					pThis->drag = true;
+					::SetCapture(pThis->hwnd);
 					break;
 				}
 				case WM_LBUTTONUP:
 				{
-					dObj->drag = false;
+					pThis->drag = false;
 					TCHAR buf[100] = { 0 };
-					::GetClassName(dObj->hwnd, buf, 100);
+					::GetClassName(pThis->hwnd, buf, 100);
 					CString className = buf;
-					if ((::GetCapture() == dObj->hwnd) && ("button" != className.MakeLower()))
+					if ((::GetCapture() == pThis->hwnd) && ("button" != className.MakeLower()))
 					{
 						::ReleaseCapture();
 					}
-					::SetWindowPos(dObj->hwndTarget, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
+					::SetWindowPos(pThis->hwndTarget, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
 					break;
 				}
 				case WM_MOUSEMOVE:
 				{
-					if (dObj->drag)
+					if (pThis->drag)
 					{
 						POINT p;
 						::GetCursorPos(&p);
-						RECT rect;
-						::GetWindowRect(dObj->hwndTarget, &rect);
+						CRect wndRect;
+						CRect rect;
+						::GetWindowRect(pThis->hwndTarget, &wndRect);
+						rect = wndRect;
 						HWND hWndParent = 0;
-						if (::GetWindowLong(dObj->hwndTarget, GWL_STYLE) & WS_CHILD)
+						if (::GetWindowLong(pThis->hwndTarget, GWL_STYLE) & WS_CHILD)
 						{
-							hWndParent = ::GetParent(dObj->hwndTarget);
+							hWndParent = ::GetParent(pThis->hwndTarget);
 						}
 						POINT lt, rb;
 						lt.x = rect.left;
@@ -112,17 +114,33 @@ namespace ducky {
 						rect.right = rb.x;
 						rect.bottom = rb.y;
 
-						DWORD x = p.x - dObj->startPoint.x;
-						DWORD y = p.y - dObj->startPoint.y;
+						DWORD x = p.x - pThis->startPoint.x;
+						DWORD y = p.y - pThis->startPoint.y;
 						DWORD width = rect.right - rect.left;
 						DWORD height = rect.bottom - rect.top;
 
-						::MoveWindow(dObj->hwndTarget, x, y, width, height, TRUE);
+						switch (pThis->dragType)
+						{
+						case DRAG_FREE:
+							break;
+						case DRAG_INSIDE:
+						{
+
+						}
+							break;
+						case DRAG_EDGE:
+						{
+
+						}
+							break;
+						}
+
+						::MoveWindow(pThis->hwndTarget, x, y, width, height, TRUE);
 					}
 					break;
 				}
 				}
-				return ::CallWindowProc(dObj->oldWndProc, dObj->hwnd, Msg, wParam, lParam);
+				return ::CallWindowProc(pThis->oldWndProc, pThis->hwnd, Msg, wParam, lParam);
 			}
 
 			return 0;
