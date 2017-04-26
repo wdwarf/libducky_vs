@@ -76,6 +76,18 @@
     <Filter Include="头文件\singleton">
       <UniqueIdentifier>{57c5e158-69a7-46c4-ae46-418b2ae39adf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\log">
+      <UniqueIdentifier>{e9c5b8df-e4e0-495e-bd28-2df9d7940a63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\log">
+      <UniqueIdentifier>{1a390c4a-b129-40af-95c4-5e4efd08db99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\file">
+      <UniqueIdentifier>{e5b4a083-7033-450a-9735-46392092bab2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\file">
+      <UniqueIdentifier>{31d093eb-076d-4f56-a74d-3e8870dca47d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -165,6 +177,12 @@
     <ClInclude Include="include\stdafx.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="include\libducky\log\Logger.h">
+      <Filter>头文件\log</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libducky\file\FileMgr.h">
+      <Filter>头文件\file</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -238,6 +256,12 @@
     </ClCompile>
     <ClCompile Include="serial_port\SerialPort.cpp">
       <Filter>源文件\serial_port</Filter>
+    </ClCompile>
+    <ClCompile Include="log\Logger.cpp">
+      <Filter>源文件\log</Filter>
+    </ClCompile>
+    <ClCompile Include="file\FileMgr.cpp">
+      <Filter>源文件\file</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -3,6 +3,7 @@
 #ifndef DUCKY_OBJECT_H_
 #define DUCKY_OBJECT_H_
 
+#include <libducky_config.h>
 #include <string>
 
 namespace ducky {

@@ -154,6 +154,8 @@
     <ClInclude Include="include\libducky\encrypt\Rijndael.h" />
     <ClInclude Include="include\libducky\exception\Exception.h" />
     <ClInclude Include="include\libducky\factory\Factory.h" />
+    <ClInclude Include="include\libducky\file\FileMgr.h" />
+    <ClInclude Include="include\libducky\log\Logger.h" />
     <ClInclude Include="include\libducky\Object.h" />
     <ClInclude Include="include\libducky\registry\Registry.h" />
     <ClInclude Include="include\libducky\serial_port\SerialPort.h" />
@@ -183,6 +185,8 @@
     <ClCompile Include="encrypt\MD5.cpp" />
     <ClCompile Include="encrypt\Rijndael.cpp" />
     <ClCompile Include="exception\Exception.cpp" />
+    <ClCompile Include="file\FileMgr.cpp" />
+    <ClCompile Include="log\Logger.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="registry\Registry.cpp" />
     <ClCompile Include="serial_port\SerialPort.cpp" />
