@@ -23,7 +23,7 @@ public:
 	~T() {
 		cout << "~T" << endl;
 	}
-	unsigned long run() {
+	void run() {
 		while (!this->canStop())
 		{
 			cout << "running" << endl;
@@ -31,77 +31,21 @@ public:
 			//throw std::exception("aa");
 		}
 
-		return 0;
+		return;
 	}
-};
 
-typedef ducky::singleton::Singleton2<Factory> ObjFac;
-
-class MyComm : public SerialPort {
-	virtual void onRead(const char* buf, int len) {
-		string str(buf, len);
-		cout << str << endl;
-		this->write("thanks", 6);
-	}
-	virtual void onWrite(const char* buf, int len) {
-		cout << "send: " << string(buf, len) << endl;
-	}
-	virtual void onReadTimeout() {}
-	virtual void onOpen() {
-		cout << this->getPort() << " opened" << endl;
-	}
-	virtual void onClose() {
-		cout << this->getPort() << " closed" << endl;
+	void onTerminated() {
+		cout << "thread terminated" << endl;
 	}
 };
 
 int main()try
 {
-	auto comPorts = SerialPort::ListComPorts();
-	for (const string& port : comPorts) {
-		cout << port << endl;
-	}
-
-	MyComm com;
-	com.setPort("com8");
-	com.setAsync();
-	com.open();
+	T* t = new T;
+	t->start();
 	cin.get();
-	com.close();
-	cin.get();
-	return 0;
-
-	auto f = ObjFac::getInstance();
-	f->regiesterCreator<T>("T");
-	T* t = f->createObject<T>("T");
-	try {
-		try {
-			cout << "running class: " << t->getClassName() << endl;
-			t->setFreeOnTerminated(true);
-			t->start();
-			Thread::Sleep(100);
-			t->start();
-		}
-		catch (Exception& e) {
-			Exception e2 = MK_EXCEPTION(Exception, "thread maybe call start func twice.", 0);
-			e2.setInnerException(&e);
-			throw e2;
-		}
-	}
-	catch (Exception& e) {
-		string info;
-		if (t && t->isRunning()) {
-			info = "thread is running, try to stop it.";
-			t->stop();
-		}
-		else {
-			info = "thread is not rnaning.";
-		}
-
-		Exception e2 = MK_EXCEPTION(Exception, info, 0);
-		e2.setInnerException(&e);
-		throw e2;
-	}
+	t->stop();
+	t->join();
 	
 
 	cin.get();

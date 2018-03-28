@@ -12,10 +12,6 @@ namespace ducky
 
 		EXCEPTION_DEF(ThreadException)
 
-		enum ThreadState {
-			TS_RUNNING, TS_STOP_REQUIRING, TS_STOPPED
-		};
-
 		class Thread : virtual public Object
 		{
 		public:
@@ -27,7 +23,6 @@ namespace ducky
 			virtual void join();	//等待线程结束
 			virtual bool isRunning() const;	//线程是否正在执行
 
-			virtual ThreadState getState() const;	//线程的状态
 			bool isFreeOnTerminated() const;
 			void setFreeOnTerminated(bool freeOnTerminated);
 			bool canStop();
@@ -42,16 +37,19 @@ namespace ducky
 			static void Sleep(DWORD ms);	//睡眠函数，单位为毫秒
 
 		private:
-			virtual DWORD  run() = 0;
+			virtual void  run() = 0;
 			virtual void onTerminated();
 			static DWORD  __stdcall ThreadFunc(Thread* pThread);
 
 		protected:
 			HANDLE handle;
 			DWORD  threadId;
+			bool _canStop;
 			size_t stackSize;
-			ThreadState threadState;
 			bool freeOnTerminated;
+
+			Thread(const Thread&);
+			Thread& operator=(const Thread&);
 		};
 
 	}

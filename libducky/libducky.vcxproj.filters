@@ -183,6 +183,9 @@
     <ClInclude Include="include\libducky\file\FileMgr.h">
       <Filter>头文件\file</Filter>
     </ClInclude>
+    <ClInclude Include="include\libducky\thread\Semaphore.h">
+      <Filter>头文件\thread</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -262,6 +265,9 @@
     </ClCompile>
     <ClCompile Include="file\FileMgr.cpp">
       <Filter>源文件\file</Filter>
+    </ClCompile>
+    <ClCompile Include="thread\Semaphore.cpp">
+      <Filter>源文件\thread</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

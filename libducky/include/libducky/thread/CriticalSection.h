@@ -35,7 +35,7 @@ namespace ducky
 			~CSLocker();
 
 		private:
-			CriticalSection& wcs;
+			CriticalSection & wcs;
 			CSLocker(CSLocker&);
 			CSLocker& operator=(CSLocker&);
 		};

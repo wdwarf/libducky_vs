@@ -71,11 +71,11 @@ namespace ducky
 				return true;
 			}
 
-			DWORD run()
+			void run()
 			{
 				if (NULL == this->pSerialPort)
 				{
-					return 0;
+					return;
 				}
 				this->pSerialPort->onOpen();
 				this->pSerialPort->read(NULL, 0);
@@ -125,7 +125,7 @@ namespace ducky
 
 				this->pSerialPort->onClose();
 
-				return 0;
+				return;
 			}
 
 		private:

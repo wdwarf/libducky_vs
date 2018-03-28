@@ -2,6 +2,8 @@
 #include "libducky/thread/Thread.h"
 #include <Windows.h>
 #include <iostream>
+#include <cassert>
+
 using namespace std;
 
 namespace ducky {
@@ -10,8 +12,8 @@ namespace ducky {
 
 		//-----------------------------------------------------
 
-		Thread::Thread() : handle(NULL), threadId(0),
-			stackSize(0), threadState(TS_STOPPED),
+		Thread::Thread() : handle(NULL), threadId(0), _canStop(false),
+			stackSize(0),
 			freeOnTerminated(false)
 		{
 			//
@@ -46,13 +48,12 @@ namespace ducky {
 
 		DWORD WINAPI Thread::ThreadFunc(Thread* pThread)
 		{
-			if (!pThread) return -1;
+			assert(pThread);
 
-			pThread->threadState = TS_RUNNING;
 			try {
 				pThread->run();
 			}
-			catch (std::exception& e){
+			catch (std::exception& e) {
 				cout << "[" << __FUNCTION__ << "] " << e.what() << endl;
 			}
 			catch (...) {
@@ -65,10 +66,9 @@ namespace ducky {
 			catch (...) {
 			}
 
-			pThread->threadState = TS_STOPPED;
 			pThread->threadId = 0;
 			if (pThread->freeOnTerminated) {
-				pThread->deleteThis();
+				delete pThread;
 			}
 
 			return 0;
@@ -85,9 +85,11 @@ namespace ducky {
 
 		void Thread::start()
 		{
-			if (TS_STOPPED != this->threadState) {
-				THROW_EXCEPTION(ThreadException, "thread is running.", 0);
+			if (this->isRunning()) {
+				return;
 			}
+
+			this->_canStop = false;
 
 			this->handle = CreateThread(
 				0,
@@ -104,15 +106,9 @@ namespace ducky {
 
 		//-----------------------------------------------------
 
-		ThreadState Thread::getState() const {
-			return this->threadState;
-		}
-
-		//-----------------------------------------------------
-
 		DWORD Thread::suspend()
 		{
-			if (TS_STOPPED != this->threadState) {
+			if (!this->isRunning()) {
 				return 0;
 			}
 			return ::SuspendThread(this->handle);
@@ -128,14 +124,18 @@ namespace ducky {
 		//-----------------------------------------------------
 
 		bool Thread::isRunning() const {
-			return ((TS_RUNNING == this->threadState)
-				|| (TS_STOP_REQUIRING == this->threadState));
+			DWORD val = 0;
+			GetExitCodeThread(this->handle, &val);
+			if (STILL_ACTIVE == val) {
+				return true;
+			}
+			return false;
 		}
 
 		//-----------------------------------------------------
 
 		bool Thread::canStop() {
-			return (TS_STOP_REQUIRING == this->threadState);
+			return this->_canStop;
 		}
 
 		//-----------------------------------------------------
@@ -152,7 +152,7 @@ namespace ducky {
 			if (!this->isRunning())
 				return;
 
-			this->threadState = TS_STOP_REQUIRING;
+			this->_canStop = true;
 		}
 
 		//-----------------------------------------------------
